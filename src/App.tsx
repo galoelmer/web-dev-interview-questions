@@ -2,9 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import data from "./data";
 
+interface Quiz {
+  question: string;
+  answer: string | string[];
+}
+
 function App() {
   const [index, setIndex] = useState(0);
-  const [question, setQuestion] = useState(data[index]);
+  const [quiz, setQuiz] = useState<Quiz>(data[index]);
 
   const prevOnClickHandler = () => {
     if (index === 0) {
@@ -23,28 +28,32 @@ function App() {
   };
 
   useEffect(() => {
-    setQuestion(data[index]);
+    setQuiz(data[index]);
   }, [index]);
 
   return (
-    <>
-      <section className="questionCard">
-        <h2>{question.question}</h2>
-        {Array.isArray(question.answer) ? (
+    <main>
+      <section className="quiz-container">
+        <h3>{quiz.question}</h3>
+        {Array.isArray(quiz.answer) ? (
           <ul>
-            {question.answer.map((item, i) => (
+            {quiz.answer.map((item, i) => (
               <li key={i}>{item}</li>
             ))}
           </ul>
         ) : (
-          <p>{question.answer}</p>
+          <p>{quiz.answer}</p>
         )}
       </section>
-      <section>
-        <button onClick={prevOnClickHandler}>Previous</button>
-        <button onClick={nextOnClickHandler}>Next</button>
+      <section className="buttons-container">
+        <div className="button" onClick={prevOnClickHandler}>
+          <span>&#10094;</span>
+        </div>
+        <div className="button" onClick={nextOnClickHandler}>
+          &#10095;
+        </div>
       </section>
-    </>
+    </main>
   );
 }
 
