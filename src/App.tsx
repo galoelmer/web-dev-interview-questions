@@ -1,70 +1,54 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import './App.css'
+import { AutoRotatingCarousel, Slide } from 'material-auto-rotating-carousel'
+import { blueGrey } from '@material-ui/core/colors'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 import data from './data'
 
-interface Quiz {
-  question: string
-  answer: string | string[]
+// TODO: fix multiple warnings showing on dev console
+
+type AnswerType = { answer: string | string[] }
+/**
+ * Create element containing the quiz answer
+ * @param {string | string[]} answer -  Text representing the quiz answer
+ * @returns {React.ReactElement} if answer is type array return list Element <ul> else return paragraph element <p>
+ */
+function Answer({ answer }: AnswerType) {
+  let content: React.ReactElement
+  if (Array.isArray(answer)) {
+    content = (
+      <ul>
+        {answer.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    )
+  } else {
+    content = <p>{answer}</p>
+  }
+
+  return content
 }
 
 function App() {
-  const [index, setIndex] = useState(0)
-  const [quiz, setQuiz] = useState<Quiz>(data[index])
-
-  const prevOnClickHandler = () => {
-    if (index === 0) {
-      setIndex(data.length - 1)
-    } else {
-      setIndex((state: number) => (state - 1) % data.length)
-    }
-  }
-
-  const nextOnClickHandler = () => {
-    if (index === data.length - 1) {
-      setIndex(0)
-    } else {
-      setIndex((state) => (state + 1) % data.length)
-    }
-  }
-
-  useEffect(() => {
-    setQuiz(data[index])
-  }, [index])
-
   return (
     <main>
-      <section className="quiz-container">
-        <h3>{quiz.question}</h3>
-        {Array.isArray(quiz.answer) ? (
-          <ul>
-            {quiz.answer.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>{quiz.answer}</p>
-        )}
-      </section>
-      <section className="buttons-container">
-        <div
-          className="button"
-          onClick={prevOnClickHandler}
-          onKeyUp={prevOnClickHandler}
-          role="button"
-          tabIndex={0}
-        >
-          <span>&#10094;</span>
-        </div>
-        <div
-          className="button"
-          onClick={nextOnClickHandler}
-          onKeyUp={nextOnClickHandler}
-          role="button"
-          tabIndex={0}
-        >
-          &#10095;
-        </div>
-      </section>
+      <AutoRotatingCarousel
+        open
+        autoplay={false}
+        mobile={useMediaQuery('(max-width:600px)')}
+      >
+        {data.map((item) => (
+          <Slide
+            media={<img src="#" alt="null" />}
+            key={item.question}
+            mediaBackgroundStyle={{ display: 'none' }}
+            style={{ background: `${blueGrey[900]}` }}
+            title={<h5>{item.question}</h5>}
+            subtitle={<Answer answer={item.answer} />}
+          />
+        ))}
+      </AutoRotatingCarousel>
     </main>
   )
 }

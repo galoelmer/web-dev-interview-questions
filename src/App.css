@@ -8,44 +8,44 @@ main {
   margin: 0 auto;
 }
 
-p {
-  line-height: 1.4em;
+.MuiBackdrop-root {
+  background-color: #36474f !important;
 }
 
-.quiz-container {
-  display: flex;
-  flex-direction: column;
+.MuiTypography-body1 > ul {
+  margin-top: 2em;
+  padding-bottom: 2em;
+  padding-left: 0;
 }
 
-.buttons-container {
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.MuiTypography-body1 > ul > li {
+  text-align: left !important;
+  line-height: 1.5em !important;
+  margin-bottom: 1.2em !important;
 }
 
-.button {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  height: 100%;
-  width: 3em;
-  padding: 1em;
-  background: linear-gradient(
-    270deg,
-    rgba(2, 24, 37, 0) 50%,
-    rgba(2, 24, 37, 0.17970938375350143) 100%
-  );
+.MuiTypography-body1 {
+  white-space: normal !important;
+  letter-spacing: 0.1em !important;
+  margin: 0 !important;
 }
 
-.button:last-child {
-  justify-content: flex-end;
-  background: linear-gradient(
-    90deg,
-    rgba(2, 24, 37, 0) 50%,
-    rgba(2, 24, 37, 0.17970938375350143) 100%
-  );
+.MuiTypography-body1 > h5 {
+  margin: 0;
+  line-height: 1.3em;
+}
+
+.MuiTypography-body1 > p {
+  margin-top: 2em;
+  line-height: 1.8em;
+  text-align: left;
+  padding-bottom: 2em;
+}
+
+.AutoRotatingCarousel-footer-12 {
+  display: none;
+}
+
+.AutoRotatingCarousel-carouselWrapper-8 {
+  background: #263238 !important;
 }
