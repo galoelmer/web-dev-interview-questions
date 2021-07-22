@@ -12,6 +12,10 @@ main {
   background-color: #36474f !important;
 }
 
+.MuiPaper-root {
+  background: #263238 !important;
+}
+
 .MuiTypography-body1 > ul {
   margin-top: 2em;
   padding-bottom: 2em;
@@ -42,10 +46,7 @@ main {
   padding-bottom: 2em;
 }
 
-.AutoRotatingCarousel-footer-12 {
+div[class*='AutoRotatingCarousel-footer'] {
   display: none;
 }
 
-.AutoRotatingCarousel-carouselWrapper-8 {
-  background: #263238 !important;
-}
