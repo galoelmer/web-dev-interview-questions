@@ -362,12 +362,12 @@ export default [
   {
     question: "What is IIFEs (Immediately Invoked Function Expressions)?",
     answer:
-      "t’s an Immediately-Invoked Function Expression, or IIFE for short. It executes immediately after it’s created. This pattern is often used when trying to avoid polluting the global namespace, because all the variables used inside the IIFE (like in any other normal function) are not visible outside its scope.",
+      "It’s an Immediately-Invoked Function Expression, or IIFE for short. It executes immediately after it’s created. This pattern is often used when trying to avoid polluting the global namespace, because all the variables used inside the IIFE (like in any other normal function) are not visible outside its scope.",
   },
   {
     question: "First of all, what is JavaScript?",
     answer:
-      "avaScript is a scripting language created by Netscape in 1995. It was initially used on a popular web browser called ‘Netscape Navigator. ‘But, these days, we can use it for client-side as well as server-side application development.",
+      "JavaScript is a scripting language created by Netscape in 1995. It was initially used on a popular web browser called ‘Netscape Navigator. ‘But, these days, we can use it for client-side as well as server-side application development.",
   },
   {
     question: "What is ‘NaN’?",
@@ -448,8 +448,7 @@ export default [
       "User input pages should be designed with minimal inputs from the user, elements used should be user friendly to access",
       "Use of HTTP2 to load page content quickly",
       "The use of JavaScript should be minimum",
-      "Accessibility provision such as a speaker to read …limitations can also access the website with ease",
-      "Should integrate media files like audio and video … relying on local software to execute these files",
+      "Should integrate media files like audio and video relying on local software to execute these files",
       "Web pages should be responsive to mobile screens",
     ],
   },

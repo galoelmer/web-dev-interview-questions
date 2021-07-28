@@ -2,10 +2,61 @@ import React from 'react'
 import './App.css'
 import { AutoRotatingCarousel, Slide } from 'material-auto-rotating-carousel'
 import { blueGrey } from '@material-ui/core/colors'
+import { withStyles } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import data from './data'
 
-// TODO: fix multiple warnings showing on dev console
+const StyledCarousel = withStyles({
+  footer: {
+    display: 'none', // remove dotted guide footer
+  },
+})(AutoRotatingCarousel)
+
+const StyledSlide = withStyles({
+  root: {
+    backgroundColor: blueGrey[900],
+    height: 'unset',
+  },
+  title: {
+    margin: 0,
+    lineHeight: '1.3em',
+    whiteSpace: 'normal',
+    letterSpacing: '0.1em',
+    fontSize: '1.2em',
+    fontWeight: 'bold',
+    flex: 1,
+  },
+  text: {
+    padding: '1em 0',
+  },
+  mediaBackground: {
+    flex: 1,
+    backgroundColor: blueGrey[900],
+    padding: '0 1.5em',
+    textAlign: 'left',
+  },
+  media: {
+    color: '#fff',
+    alignItems: 'start',
+    transform: 'unset',
+
+    '& > p': {
+      lineHeight: '1.8em',
+      letterSpacing: '0.2em',
+    },
+
+    '& > ul': {
+      paddingLeft: '1.1em',
+
+      '& > li': {
+        lineHeight: '1.8em',
+        letterSpacing: '0.2em',
+        marginBottom: '1.1em',
+        fontSize: '14px',
+      },
+    },
+  },
+})(Slide)
 
 type AnswerType = { answer: string | string[] }
 /**
@@ -33,22 +84,21 @@ function Answer({ answer }: AnswerType) {
 function App() {
   return (
     <main>
-      <AutoRotatingCarousel
+      <StyledCarousel
         open
         autoplay={false}
         mobile={useMediaQuery('(max-width:600px)')}
       >
         {data.map((item) => (
-          <Slide
-            media={<img src="#" alt="null" />}
+          <StyledSlide
             key={item.question}
-            mediaBackgroundStyle={{ display: 'none' }}
-            style={{ background: `${blueGrey[900]}` }}
-            title={<h5>{item.question}</h5>}
-            subtitle={<Answer answer={item.answer} />}
+            media={<Answer answer={item.answer} />}
+            style={{ display: 'flex', flexDirection: 'column-reverse' }}
+            title={item.question}
+            subtitle=""
           />
         ))}
-      </AutoRotatingCarousel>
+      </StyledCarousel>
     </main>
   )
 }
